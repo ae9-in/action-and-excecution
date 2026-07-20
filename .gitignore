@@ -1,21 +1,41 @@
-# Dependency directories
-business-vault/node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Next.js build output
-business-vault/.next/
-business-vault/out/
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Production build output
-business-vault/build/
+# testing
+/coverage
 
-# Local environment files (crucial for security)
-business-vault/.env.local
-business-vault/.env.*.local
+# next.js
+/.next/
+/out/
 
-# Temporary/scratch files
-business-vault/scratch/
-scratch/
+# production
+/build
 
-# OS files
+# misc
 .DS_Store
-Thumbs.db
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

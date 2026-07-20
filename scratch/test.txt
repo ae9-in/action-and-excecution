@@ -1,0 +1,2 @@
+This is a secure business vault test document saved directly to NeonDB.
+Validation complete!
