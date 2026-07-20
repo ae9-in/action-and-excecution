@@ -4,8 +4,10 @@ import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';
 import { users, businessMembers } from '@/drizzle/schema';
+import { authConfig } from './auth.config';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   providers: [
     Credentials({
       name: 'credentials',
@@ -37,11 +39,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  session: { strategy: 'jwt' },
-  pages: {
-    signIn: '/login',
-  },
   callbacks: {
+    ...authConfig.callbacks,
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -73,20 +72,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.businessIds = memberships.map((m) => m.businessId);
       }
       return token;
-    },
-    async session({ session, token }) {
-      // Invalidate if token is invalidated (e.g. user deactivated)
-      if (!token.id) {
-        return null as any;
-      }
-      if (token && session.user) {
-        const userObj = session.user as any;
-        userObj.id = token.id as string;
-        userObj.role = token.role;
-        userObj.orgId = token.orgId;
-        userObj.businessIds = token.businessIds || [];
-      }
-      return session;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
