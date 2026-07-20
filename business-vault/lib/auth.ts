@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import { db } from '@/lib/db';
 import { users, businessMembers } from '@/drizzle/schema';
-import { authConfig } from './auth.config';
+import { authConfig } from '../auth.config';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,

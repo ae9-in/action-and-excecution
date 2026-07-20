@@ -24,7 +24,7 @@ export const authConfig = {
         userObj.id = token.id as string;
         userObj.role = token.role;
         userObj.orgId = token.orgId;
-        userObj.businessIds = token.businessIds || [];
+        userObj.businessIds = (token as any).businessIds || [];
       }
       return session;
     },
