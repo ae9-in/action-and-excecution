@@ -1,0 +1,21 @@
+# Dependency directories
+business-vault/node_modules/
+
+# Next.js build output
+business-vault/.next/
+business-vault/out/
+
+# Production build output
+business-vault/build/
+
+# Local environment files (crucial for security)
+business-vault/.env.local
+business-vault/.env.*.local
+
+# Temporary/scratch files
+business-vault/scratch/
+scratch/
+
+# OS files
+.DS_Store
+Thumbs.db
